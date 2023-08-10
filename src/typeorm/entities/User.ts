@@ -5,7 +5,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity({ name: 'users' })
 export class User{
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ type: 'bigint'})
     id: number;
 
     @Column({unique: true})
@@ -14,7 +14,7 @@ export class User{
     @Column()
     password: string;
 
-    @Column({ default: new Date() })
+    @Column()
     createdAt: Date;
 
     @Column({ nullable: true })
