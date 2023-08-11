@@ -37,4 +37,9 @@ export class UsersController {
 
         return this.userService.createUserProfile(id, createUserProfileDto)
     }
+
+    @Post(':id/posts')
+    createUserPost(@Param('id', ParseIntPipe) id: number){
+
+    }
 }
