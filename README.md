@@ -5,69 +5,102 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+# Users Management API
 
-## Description
+This API provides endpoints to manage users, their profiles, and posts.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+I followed YouTube Tutorial '[NestJS, MySQL, TypeORM Crash Course](https://www.youtube.com/watch?v=W1gvIw0GNl8&list=PL_cUvD4qzbkw-phjGK2qq0nQiG6gw1cKK&index=5)' by Anson the Developer.
+
+## Requirements
+
+- Node.js (>=12.x)
+- npm (>=6.x)
+- Nest.js (>=8.x)
+- MySQL Database
 
 ## Installation
 
-```bash
-$ npm install
-```
+1. Clone the repository:
 
-## Running the app
+   ```bash
+   git clone https://github.com/tirthacodes/nest-js-third.git
+   ```
 
-```bash
-# development
-$ npm run start
+2. Install dependencies:
 
-# watch mode
-$ npm run start:dev
+   ```bash
+   cd nest-js-third
+   npm install
+   ```
 
-# production mode
-$ npm run start:prod
-```
+3. Set up the MySQL database:
 
-## Test
+   - Make sure you have MySQL installed.
+   - Create a new database named `nestjs_mysql_tutorial`.
 
-```bash
-# unit tests
-$ npm run test
+4. Configure the database connection:
 
-# e2e tests
-$ npm run test:e2e
+   - Open `src/app.module.ts`.
+   - Update the database connection details under the `TypeOrmModule.forRoot()` options.
+   - Ensure the `entities` array includes the `User`, `Profile`, and `Post` entities.
 
-# test coverage
-$ npm run test:cov
-```
+5. Run the application:
 
-## Support
+   ```bash
+   npm run start:dev
+   ```
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+## Endpoints
 
-## Stay in touch
+- **GET /users:** Get all users, their profiles, and posts.
+- **POST /users:** Create a new user.
+- **PUT /users/:id:** Update a user by ID.
+- **DELETE /users/:id:** Delete a user by ID.
+- **POST /users/:id/profiles:** Create a profile for a user by ID.
+- **POST /users/:id/posts:** Create a post for a user by ID.
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+### Sample Requests
 
-## License
+#### Create User
 
-Nest is [MIT licensed](LICENSE).
+- **Method:** POST
+- **URL:** `/users`
+- **Body:**
+  ```json
+  {
+    "username": "newuser",
+    "password": "newpassword"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "id": 1,
+    "username": "newuser",
+    "createdAt": "2023-08-10T12:34:56.789Z"
+  }
+  ```
+
+#### Update User
+
+- **Method:** PUT
+- **URL:** `/users/:id`
+- **Body:**
+  ```json
+  {
+    "username": "updateduser",
+    "password": "updatedpassword"
+  }
+  ```
+- **Response:**
+  ```json
+  {
+    "id": 1,
+    "username": "updateduser",
+    "createdAt": "2023-08-10T12:34:56.789Z"
+  }
+  ```
+
+## Contributing
+
+Contributions are welcome! Feel free to open issues or submit pull requests for improvements, bug fixes, or new features.
