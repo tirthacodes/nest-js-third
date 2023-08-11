@@ -21,8 +21,8 @@ export class UsersController {
         return this.userService.createUser(createUserDto);
     }
 
-    @Put('id')
-    updateUserById(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto){
-        return this.userService.updateUser(id, updateUserDto);
+    @Put(':id')
+    async updateUserById(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto){
+        await this.userService.updateUser(id, updateUserDto);
     }
 }

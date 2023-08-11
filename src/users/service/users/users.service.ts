@@ -20,7 +20,7 @@ export class UsersService {
         return this.userRepository.save(newUser);
     }
 
-    async updateUser(id: number, updateUserDetails: UpdateUserParams){
-        await this.userRepository.update({ id }, { ...updateUserDetails})
+    updateUser(id: number, updateUserDetails: UpdateUserParams){
+        return this.userRepository.update({ id }, { ...updateUserDetails})
     }
 }
